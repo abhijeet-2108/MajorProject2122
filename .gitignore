@@ -1,0 +1,5 @@
+# Project exclude paths
+/env/include/
+/env/Lib/
+/env/Scripts/
+/env/share/

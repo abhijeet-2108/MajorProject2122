@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+
+{% block styles%}
+{{super()}}
+{% endblock styles %}
+<title>Home</title>
+{% endblock head %}
+
+{% block body %}
+{% block navbar %}
+{{super()}}
+{% endblock navbar %}
+<br>
+{% block content %}
+<h2 class="py-2 pr-3 container "><strong>Trust Repository</strong></h2>
+<div class="row container-fluid text text-dark card my-5  ">
+    <!-- <div class="col-6 dark">
+      <h4>
+      <label class="radio-inline pr-3"><input type="radio" name="type" id="one" value="" onchange="myFunction()">Matplotlib</label><br>
+      <label class="radio-inline"><input type="radio" name="type" id="two" value="" onchange="myFunction()">Scatter Plot</label><br>
+      <label class="radio-inline"><input type="radio" name="type" id="three" value="" onchange="myFunction()" >seaborn Plot</label><br>
+      <a href="">
+        <button type="button" class="btn btn-info mt-5" id="datagen" onclick="myFunction2()">data</button>
+      </a>
+      </h4>
+    </div> -->
+    <!-- <input type="checkbox" id="myCheck" onclick="myFunction()"> -->
+    <!-- <p id="text" style="display:none">Checkbox is CHECKED!</p>
+
+      <img class="col-6 dark border border-dark img-fluid" style="display:none"src="{{ image }}" alt="my plot" id="image1">
+      <img class="col-6 dark border border-dark img-fluid" style="display:none"src="/plot2.png" alt="my plot" id="image2">
+      <img class="col-6 dark border border-dark img-fluid" style="display:none"src="/plot.png" alt="my plot" id="image3">
+
+      <div class="col-6 dark border border-dark h-100 text-center" style="display: block;" id="data">
+        {{ data|safe }}
+      </div>
+        -->
+
+    <div class="row my-2 linkunderline">
+        <div class="col-3 card card-body">
+            <h3><span class="fa fa-stack-exchange" aria-hidden="true"></span> Applications</h3><br>
+            <div class="card-body  ">
+                <li><a class="text-decoration-none text-dark" href="#">Binary Analysis</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Scanners</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">WebApp Firewalls</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Transactional Security</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Copyright Protections</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Misuse Detection</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Anomaly Detection</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Worm Containment</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Malware Injection</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Stenography Attacks</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Shared Architecture</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Web-Services & Protocol based Attacks</a></li>
+            </div>
+
+        </div>
+        <div class="col-3 card card-body">
+
+            <h3><span class="fa fa-address-book" aria-hidden="true"></span> Data Information</h3><br>
+
+            <div class="card-body">
+                <li><a class="text-decoration-none text-dark" href="#">Data loss Protection</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Common Log Files</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Database Activity</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Monitoring</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Encryption</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Data Coloring</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Authentications & Authorizations</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Data Scavenging</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Data Duplication</a></li>
+            </div>
+        </div>
+        <div class="col-3 card card-body">
+
+            <h3><i class="fa fa-cogs" aria-hidden="true"></i> Management</h3><br>
+
+            <div class="card-body">
+                <li><a class="text-decoration-none text-dark" href="#">Govt. risk Management & Compliance</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Identity & Access Management</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Virtual Machines</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Patch Management </a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Federated Identity Management</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Feedback Management</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Customer Support Management</a></li>
+            </div>
+        </div>
+        <div class="col-3 card card-body">
+
+            <h3><i class="fa fa-rss" aria-hidden="true"></i> Networking</h3><br>
+
+            <div class="card-body">
+                <li><a class="text-decoration-none text-dark" href="#">Network IDS/IPS</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Firewall</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Data Processing</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Information</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Quality of Services</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Domain Name System Security Extension</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Anti-DDoS</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Alert Vulnerable</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Port Scanning</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Botnet Attack</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Spoofing Attck</a></li>
+
+            </div>
+        </div>
+    </div>
+    <div class="row my-2 linkunderline">
+        <div class="col-3 card card-body">
+
+            <h3><i class="fa fa-laptop" aria-hidden="true"></i> Trusted Computing</h3><br>
+
+            <div class="card-body">
+                <li><a class="text-decoration-none text-dark" href="#">Hardware & Software Root of Trust & AIPs</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Trust Overlay & Reputation System</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Performance Analysis</a></li>
+
+            </div>
+        </div>
+        <div class="col-3 card card-body">
+
+            <h3><i class="fa fa-cloud" aria-hidden="true"></i> Compute and Storage </h3><br>
+
+            <div class="card-body">
+                <li><a class="text-decoration-none text-dark" href="#">IDS/IPS</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Host-based Firewalls</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Integrity and file/log Management</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Encryption</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">Masking</a></li>
+
+            </div>
+        </div>
+        <div class="col-3 card card-body">
+            <h3><i class="fa fa-exclamation-triangle"></i> VM based Attacks</h3><br>
+
+            <div class="card-body">
+                <li><a class="text-decoration-none text-dark" href="#">Cross VM side Channel Attack</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">VM Creation Attack</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">VM Migration & Rollback</a></li>
+                <li><a class="text-decoration-none text-dark" href="#">VM Scheduler based Attack</a></li>
+
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+{{ super() }}
+<script>
+    // var a = document.getElementsByTagName('a');
+    // // loop through all 'a' elements
+    // for (i = 0; i < a.length; i++) {
+    //     // Remove the class 'active' if it exists
+    //     a[i].classList.remove('active')
+    // }
+    document.getElementById("a-home").classList.remove('active')
+
+    document.getElementById("a-about").classList.remove('active')
+    document.getElementById("a-dashboard").classList.remove('active')
+    document.getElementById("a-repo").classList.add('active')
+    document.getElementById("a-data").classList.remove('active')
+</script>
+
+{% endblock %}
+{% endblock %}

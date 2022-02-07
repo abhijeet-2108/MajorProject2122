@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+{{super()}}
+{% block styles%}
+{{super()}}
+{% endblock styles %}
+<title>Home</title>
+{% endblock head %}
+
+{% block body %}
+{% block navbar %}
+{{super()}}
+{% endblock navbar %}
+<br>
+<div class="row container dark text text-dark ">
+    <!-- <div class="col-6 dark">
+      <h4>
+      <label class="radio-inline pr-3"><input type="radio" name="type" id="one" value="" onchange="myFunction()">Matplotlib</label><br>
+      <label class="radio-inline"><input type="radio" name="type" id="two" value="" onchange="myFunction()">Scatter Plot</label><br>
+      <label class="radio-inline"><input type="radio" name="type" id="three" value="" onchange="myFunction()" >seaborn Plot</label><br>
+      <a href="">
+        <button type="button" class="btn btn-info mt-5" id="datagen" onclick="myFunction2()">data</button>
+      </a>
+      </h4>
+    </div> -->
+    <!-- <input type="checkbox" id="myCheck" onclick="myFunction()"> -->
+    <!-- <p id="text" style="display:none">Checkbox is CHECKED!</p>
+
+      <img class="col-6 dark border border-dark img-fluid" style="display:none"src="{{ image }}" alt="my plot" id="image1">
+      <img class="col-6 dark border border-dark img-fluid" style="display:none"src="/plot2.png" alt="my plot" id="image2">
+      <img class="col-6 dark border border-dark img-fluid" style="display:none"src="/plot.png" alt="my plot" id="image3">
+      {% block content %}
+      <div class="col-6 dark border border-dark h-100 text-center" style="display: block;" id="data">
+        {{ data|safe }}
+      </div>
+      {% endblock content%}  -->
+<p>LOgged in</p>
+</div>
+</div>
+{% block scripts %}
+{{ super() }}
+<script>
+    // var a = document.getElementsByTagName('a');
+    // // loop through all 'a' elements
+    // for (i = 0; i < a.length; i++) {
+    //     // Remove the class 'active' if it exists
+    //     a[i].classList.remove('active')
+    // }
+    document.getElementById("a-home").classList.remove('active')
+    document.getElementById("a-about").classList.remove('active')
+    document.getElementById("a-dashboard").classList.add('active')
+    document.getElementById("a-data").classList.remove('active')
+</script>
+
+
+{% endblock %}
+{% endblock %}
