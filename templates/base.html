@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--    <title>Document</title>-->
+
+    {% block styles %}
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('.static', filename='css/app.css')}}">
+    <!--    <link rel="stylesheet" href="{{url_for('.static', filename='css/bootstrap-social.css')}}">-->
+    <!--    <link rel="stylesheet" href="{{url_for('.static', filename='css/styles.css')}}">-->
+    {% endblock styles %}
+    {% endblock head %}
+
+</head>
+<body>
+{% block body %}
+{% block navbar %}
+<nav class="navbar navbar-dark bg-dark $gray-600 navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{url_for('index')}}"><img class="mr-1" width="100px"
+                                                                 src="../../static/image/logo.png"></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Navbar"
+                aria-controls="#Navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="Navbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item " id="a-home"><a class="nav-link" href="{{url_for('index')}}"><span
+                        class="fa fa-home fa-lg text-large"></span>Home</a></li>
+
+                <li class="nav-item " id="a-dashboard"><a class="nav-link" href="{{url_for('dashboard')}}"><i class="fa fa-database" aria-hidden="true"></i></span> Dashboard</a></li>
+                <li class="nav-item " id="a-repo">
+                    <span class="fa fa-clipboard-list fa-lg"></span>
+                    <div class="btn-group" id="dropdownmenu2">
+                        <a class="nav-link" href="{{url_for('trustrepository')}}">
+                            Trust Repository
+
+                        </a>
+                        <button type="button" class="btn nav-link dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"
+                                onclick="myFunction3()">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-dark"
+                             aria-labelledby="navbarDropdown">
+                            <div>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <a class="dropdown-item btn">Applications </a>
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fa fa-chevron-right mt-2"></i>
+                                    </div>
+                                </div>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-submenu">
+                                    <li><a class="dropdown-item" href="#">Binary Analysis</a></li>
+                                    <li><a class="dropdown-item" href="#">Scanners</a></li>
+                                    <li><a class="dropdown-item" href="#">WebApp Firewalls</a></li>
+                                    <li><a class="dropdown-item" href="#">Transactional Security</a></li>
+                                    <li><a class="dropdown-item" href="#">Copyright Protections</a></li>
+                                    <li><a class="dropdown-item" href="#">Misuse Detection</a></li>
+                                    <li><a class="dropdown-item" href="#">Anomaly Detection</a></li>
+                                    <li><a class="dropdown-item" href="#">Worm Containment</a></li>
+                                    <li><a class="dropdown-item" href="#">Malware Injection</a></li>
+                                    <li><a class="dropdown-item" href="#">Stenography Attacks</a></li>
+                                    <li><a class="dropdown-item" href="#">Shared Architecture</a></li>
+                                    <li><a class="dropdown-item" href="#">Web-Services & Protocol based Attacks</a></li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <a class="dropdown-item btn" href="#">Data Information </a>
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fa fa-chevron-right mt-2"></i>
+                                    </div>
+                                </div>
+
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-submenu">
+                                    <li><a class="dropdown-item" href="#">Data loss Protection</a></li>
+                                    <li><a class="dropdown-item" href="/trustrepository/datainformation/log">Common Log Files</a></li>
+                                    <li><a class="dropdown-item" href="#">Database Activity</a></li>
+                                    <li><a class="dropdown-item" href="/trustrepository/datainformation/monitoring">Monitoring</a></li>
+                                    <li><a class="dropdown-item" href="#">Encryption</a></li>
+                                    <li><a class="dropdown-item" href="#">Data Coloring</a></li>
+                                    <li><a class="dropdown-item" href="#">Authentications & Authorizations</a></li>
+                                    <li><a class="dropdown-item" href="#">Data Scavenging</a></li>
+                                    <li><a class="dropdown-item" href="#">Data Duplication</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <a class="dropdown-item" href="#">Management </a>
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fa fa-chevron-right mt-2"></i>
+                                    </div>
+                                </div>
+
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-submenu">
+                                    <li><a class="dropdown-item" href="#">Govt. risk Management & Compliance</a></li>
+                                    <li><a class="dropdown-item" href="#">Identity & Access Management</a></li>
+                                    <li><a class="dropdown-item" href="#">Virtual Machines</a></li>
+                                    <li><a class="dropdown-item" href="#">Patch Management </a></li>
+                                    <li><a class="dropdown-item" href="#">Federated Identity Management</a></li>
+                                    <li><a class="dropdown-item" href="#">Feedback Management</a></li>
+                                    <li><a class="dropdown-item" href="#">Customer Support Management</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <a class="dropdown-item" href="#">Networking</a>
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fa fa-chevron-right mt-2"></i>
+                                    </div>
+                                </div>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-submenu">
+                                    <li><a class="dropdown-item" href="#">Network IDS/IPS</a></li>
+                                    <li><a class="dropdown-item" href="#">Firewall</a></li>
+                                    <li><a class="dropdown-item" href="#">Data Processing</a></li>
+                                    <li><a class="dropdown-item" href="#">Information</a></li>
+                                    <li><a class="dropdown-item" href="#">Quality of Services</a></li>
+                                    <li><a class="dropdown-item" href="#">Domain Name System Security Extension</a></li>
+                                    <li><a class="dropdown-item" href="#">Anti-DDoS</a></li>
+                                    <li><a class="dropdown-item" href="#">Alert Vulnerable</a></li>
+                                    <li><a class="dropdown-item" href="#">Port Scanning</a></li>
+                                    <li><a class="dropdown-item" href="#">Botnet Attack</a></li>
+                                    <li><a class="dropdown-item" href="#">Spoofing Attck</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <a class="dropdown-item" href="#">Trusted Computing </a>
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fa fa-chevron-right mt-2"></i>
+                                    </div>
+                                </div>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-submenu">
+                                    <li><a class="dropdown-item" href="#">Hardware & Software Root of Trust & AIPs</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Trust Overlay & Reputation System</a></li>
+                                    <li><a class="dropdown-item" href="#">Performance Analysis</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <a class="dropdown-item" href="#">Compute and Storage </a>
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fa fa-chevron-right mt-2"></i>
+                                    </div>
+                                </div>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-submenu">
+                                    <li><a class="dropdown-item" href="#">IDS/IPS</a></li>
+                                    <li><a class="dropdown-item" href="#">Host-based Firewalls</a></li>
+                                    <li><a class="dropdown-item" href="#">Integrity and file/log Management</a></li>
+                                    <li><a class="dropdown-item" href="#">Encryption</a></li>
+                                    <li><a class="dropdown-item" href="#">Masking</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <a class="dropdown-item" href="#">VM based Attacks </i></a>                                    </div>
+                                    <div class="col-2">
+                                        <i class="fa fa-chevron-right mt-2"></i>
+                                    </div>
+                                </div>
+
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-submenu">
+                                    <li><a class="dropdown-item" href="#">Cross VM side Channel Attack</a></li>
+                                    <li><a class="dropdown-item" href="#">VM Creation Attack</a></li>
+                                    <li><a class="dropdown-item" href="#">VM Migration & Rollback</a></li>
+                                    <li><a class="dropdown-item" href="#">VM Scheduler based Attack</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+                <li class="nav-item " id="a-data"><a class="nav-link" href="" onclick="myFunction2()"><span
+                        class="fa fa-search fa-lg"></span> Data</a></li>
+                <li class="nav-item " id="a-about"><a class="nav-link" href=""><span class="fa fa-info fa-lg"></span>
+                    About</a></li>
+                <!-- <li class="nav-item "><a class="nav-link" data-toggle="modal" data-target="#reserveModal"><span class="fa fa-search fa-lg"></span> Search</a></li> -->
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                {% if logged_user() == False %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('login')}}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('register')}}">Register</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <div class="btn-group" id="dropdownmenu">
+                        <button id="navbarDropdown active" class="nav-link btn  ">
+                            <i class="fa fa-user" aria-hidden="true"></i>  {{ user }}
+                        </button>
+                        <button type="button" class="btn nav-link dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"
+                                onclick="myFunction3()" id="dropdownbtn">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-dark"
+                             aria-labelledby="navbarDropdown">
+                            <div><a class="dropdown-item" href="#">Profile</a></div>
+                            <div><a class="dropdown-item" href="#">Menu1</a></div>
+                            <div><a class="dropdown-item" href="#">Menu2</a></div>
+
+                            <hr class="drop-divider">
+                            <div class="dropdown-item">
+                                <a class="text-light text-decoration-none" href="{{url_for('logout')}}">
+                                    Logout
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+{% endblock navbar %}
+{% block content %}
+{% endblock content %}
+{% block scripts %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+<!-- <script src="//jquerycsvtotable.googlecode.com/files/jquery.csvToTable.js"></script> -->
+<script>
+    function myFunction() {
+        var checkBox = document.getElementById("myCheck");
+        var text = document.getElementById("text");
+        var image1 = document.getElementById("image1");
+        var image2 = document.getElementById("image2");
+        var image3 = document.getElementById("image3");
+
+        if (document.getElementById('one').checked) {
+            image1.style.display = "block";
+            image2.style.display = "none";
+            image3.style.display = "none";
+            document.getElementById("data").style.display = "none";
+        } else if (document.getElementById('two').checked) {
+            image1.style.display = "none";
+            image2.style.display = "block";
+            image3.style.display = "none";
+            document.getElementById("data").style.display = "none";
+        } else {
+            image1.style.display = "none";
+            image2.style.display = "none";
+            image3.style.display = "block";
+            document.getElementById("data").style.display = "none";
+        }
+    }
+
+    function myFunction2() {
+        document.getElementById("data").style.display = "block";
+        document.getElementById("image1").style.display = "none";
+        document.getElementById("image2").style.display = "none";
+        document.getElementById("image3").style.display = "none";
+    }
+
+    // function myFunction3() {
+    //     document.getElementById("dropdownmenu").classList.add("dropstart");
+    // }
+    var specifiedElement = document.getElementById('dropdownmenu');
+
+    //I'm using "click" but it works with any event
+    document.addEventListener('click', function (event) {
+        var isClickInside = specifiedElement.contains(event.target);
+
+        if (!isClickInside) {
+            document.getElementById("dropdownmenu").classList.remove("dropstart");
+        } else {
+            document.getElementById("dropdownmenu").classList.add("dropstart");
+        }
+    });
+
+    // $(window).click(function () {
+    //     if (document.getElementById("dropdownmenu").classList.contains("dropstart")){
+    //         document.getElementById("dropdownmenu").classList.remove("dropstart");
+    //     }
+    // });
+    // $('#dropdownmenu').click(function (event) {
+    //     document.getElementById("dropdownmenu").classList.add("dropstart");
+    //     event.stopPropagation();
+    // });
+
+
+</script>
+{% endblock scripts %}
+{% endblock body %}
+
+</body>
+</html>
