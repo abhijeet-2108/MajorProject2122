@@ -1,0 +1,3 @@
+date,time,cpu_load,idle_time_cpu,kernal_process_time_cpu,normal_process_time_usermode_cpu,freq_max,freq_min,disk_usage_total,disk_usage_used,disk_usage_free,disk_usage_in_percent,disk_reading_count,disk_writing_count,disk_reading_bytes,disk_writing_bytes
+28-02-2022,14:57:43,19.6,14756.41,178.04,1701.44,0.0,0.0,14,10,2,80.2,53341,31711,2293509120,1574667264
+28-02-2022,14:57:44,22.9,14757.15,178.08,1701.61,0.0,0.0,14,10,2,80.2,53344,31713,2293521408,1574786048
