@@ -1,4 +1,5 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect,session,request
+from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -180,8 +181,13 @@ sched.start()
 
 app=Flask(__name__)
 app.config['SECRET_KEY'] = "key"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/majorproject2122'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Majorproject2122.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config["SESSION_PERMANENT"] = True
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
+
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -194,6 +200,13 @@ login_manager.login_view = "login"
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+def load_all_user():
+    return User.query.all()
+
+def load_user_ip():
+    ip = request.environ.get('HTTP_X_REAL_IP',request.remote_addr)
+    return ip
 
 #model
 class User(db.Model, UserMixin):
@@ -225,6 +238,10 @@ class LoginForm(FlaskForm):
 @app.route('/')
 
 def index():
+    if session.get('name') == None:
+        return redirect(url_for(app.login))
+
+
     if current_user.is_authenticated:
         user = current_user.username
         return render_template("index.html", user = user)
@@ -240,6 +257,7 @@ def login():
         if user:
             if bcrypt.check_password_hash(user.password , form.password.data):
                 login_user(user)
+                session['name'] = user.username
                 return redirect(url_for('index'))
 
     return render_template("login.html", form= form)
@@ -254,11 +272,12 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)
+        session['name'] = form.username.data
         return redirect(url_for('index'))
     return render_template("register.html",form= form)
 
 @app.route('/dashboard', methods = ['GET', 'POST'])
-# @login_required
+@login_required
 def dashboard():
     if current_user.is_authenticated:
             user = current_user.username
@@ -268,7 +287,7 @@ def dashboard():
 
 
 @app.route('/trustrepository/datainformation/log', methods = ['GET', 'POST'])
-# @login_required
+@login_required
     
 
 def trustrepository_datainformation_log():
@@ -325,7 +344,7 @@ def trustrepository_datainformation_log():
     
 
 @app.route('/trustrepository/datainformation/monitoring', methods = ['GET', 'POST'])
-# @login_required
+@login_required
 def trustrepository_datainformation_monitoring():
     # file_list = os.listdir("templates/trust-repository/data-information/logs/")
     
@@ -506,8 +525,24 @@ def trustrepository_datainformation_monitoring():
         return render_template("/trust-repository/data-information/monitoring/index.html")
     
 
+@app.route('/trustrepository/datainformation/database_activity', methods = ['GET', 'POST'])
+@login_required
+def trustrepository_datainformation_database_activity():
+    
+    users = load_all_user()
+    ip = load_user_ip()
+    text = ''
+    with open('static/trust.txt') as f:
+        text = f.read()
+    if current_user.is_authenticated:
+        user = current_user.username
+        return render_template("/trust-repository/data-information/database_activity/index.html", user = user,users = users, ip= ip,text = text)
+    else:
+        return render_template("/trust-repository/data-information/database_activity/index.html")
+    
+
 @app.route('/trustrepository', methods = ['GET', 'POST'])
-# @login_required
+@login_required
 def trustrepository():
     if current_user.is_authenticated:
         user = current_user.username
@@ -516,7 +551,7 @@ def trustrepository():
         return render_template("/trust-repository/index.html")
 
 # @app.route('/trustrepository/', methods = ['GET', 'POST'])
-# # @login_required
+# @login_required
 # def trustrepository():
 #     if current_user.is_authenticated:
 #         user = current_user.username
@@ -529,7 +564,7 @@ def logged_user():
 app.jinja_env.globals.update(logged_user = logged_user)
 
 @app.route('/logout', methods = ['GET', 'POST'])
-# @login_required
+@login_required
 def logout():
     logout_user()
     return redirect('login')
