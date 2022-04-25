@@ -240,7 +240,7 @@ class LoginForm(FlaskForm):
 
 def index():
     if session.get('name') == None:
-        return redirect(url_for(app.login))
+        return redirect(url_for('login'))
 
 
     if current_user.is_authenticated:
