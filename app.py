@@ -202,6 +202,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 def load_all_user():
+    
     return User.query.all()
 
 def load_user_ip():

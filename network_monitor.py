@@ -17,6 +17,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import csv
 import seaborn as sns; sns.set()
+import scipy
 
 from keras.models import Sequential, load_model
 from keras.layers import Dense, LSTM, Bidirectional
@@ -163,10 +164,10 @@ while True:
     predictn2 = predict.flatten()
 
     for i in range(len(predictn2)):
-    if not predictn2[i] < 0.4:
-        predictn2[i] = 1.0;
-    else:
-        predictn2[i] = 0.0;
+        if not predictn2[i] < 0.4:
+            predictn2[i] = 1.0;
+        else:
+            predictn2[i] = 0.0;
 
     print(predictn2)
     predictn2 = predictn2.tolist()
@@ -175,6 +176,9 @@ while True:
     print(predictn2)
     trust2 = 100 * accuracy_score(list(Y_test),predictn2)
     print(trust2)
+
+    with open('static/trust.txt','w') as f:
+        f.write(trust2)
 
     print("Network Scheduler is alive!")
     print(dt_string)

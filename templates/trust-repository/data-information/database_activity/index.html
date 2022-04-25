@@ -16,28 +16,29 @@
 <br>
 {% block content %}
 <h2 class="py-2 pr-3 container "><strong>Databse Activity</strong></h2>
-<div class="row text text-dark my-5  ">
-    <div class="col-4">
-      <h4>
-        Registered users
-        {% for x in users %}
-        <li>{{x}} </li>
-        {% endfor %}  
-      </h4>
-    </div>
+  <div class="container ">
+      <div class="row text text-dark my-5  ">
+        <div class="col-4">
+          <h4>
+            Registered users
+            {% for x in users %}
+            <li>{{x['username']}} </li>
+            {% endfor %}  
+          </h4>
+        </div>
 
-  
-      <div class="col-8">
-        <h4>User IP: {{ip}}</h4>
-      </div>
       
+        <div class="col-8">
+          <h4>User IP: {{ip}}</h4>
+        </div>
+      </div>
+      <div>
+        <h3>
+          Trust Percentage = {{text}}%
+        </h3> 
+      </div>
+  </div>
 
-</div>
-<div>
-  <h3>
-    Trust Percentage = {{text}}%
-  </h3>
-</div>
 
 
 {% endblock content %}
