@@ -17,7 +17,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import csv
 import seaborn as sns; sns.set()
-import scipy
+# import scipy
 
 from keras.models import Sequential, load_model
 from keras.layers import Dense, LSTM, Bidirectional
@@ -43,27 +43,28 @@ features=[ 'frame.len', 'ip.hdr_len',
 
 while True:
     
-    # pkts = sniff(count=50,filter="host 192.168.66.240")
+    # pkts = sniff(count=50)
     pkts = sniff(count=50)
 
-    dic = []
-    dic2 = []
+    # dic = []
+    # dic2 = []
     dt_string = time.strftime("%Y-%m-%d_%H-%M-%S")
     # with open("static/netlogs/"+dt_string+".txt".format(dt_string),'a') as f:
-    for pkt in pkts:
-        temp = pkt.sprintf("%IP.dst%",)
-        temp2 = pkt.sprintf("%IP.src%",)
-        dic.append(temp)
-        dic2.append(temp2)
-    info_dict = {
-        "TimeStamp":dt_string,
-        "Dst_IP":dic,
-        "Source_IP":dic2,
-    }
-    df = pd.DataFrame.from_dict(info_dict)
-    df.to_csv("static/netlogs/"+dt_string+".csv",header=True,index=False)
+    # for pkt in pkts:
+    #     temp = pkt.sprintf("%IP.dst%",)
+    #     temp2 = pkt.sprintf("%IP.src%",)
+    #     dic.append(temp)
+    #     dic2.append(temp2)
+    # info_dict = {
+    #     "TimeStamp":dt_string,
+    #     "Dst_IP":dic,
+    #     "Source_IP":dic2,
+    # }
+    # df = pd.DataFrame.from_dict(info_dict)
+    # df.to_csv("static/netlogs/"+dt_string+".csv",header=True,index=False)
     
     wrpcap("static/netlogs/"+dt_string+".pcap", pkts)
+    cap = pyshark.FileCapture("static/netlogs/"+dt_string+".pcap")
     xml_list = []
     packet_list = []
     tag = "normal"
@@ -75,7 +76,7 @@ while True:
                 "tcp.flags.syn","tcp.flags.fin","tcp.window_size","tcp.time_delta","class"]
     packet_list.append(headings)
     nest_asyncio.apply()
-    for packet in cap:
+    for packet in pkts:
         temp = []
         temp.append(str(packet.frame_info._all_fields["frame.encap_type"]) )#0
         temp.append(str(packet.frame_info._all_fields["frame.len"])) #1
@@ -157,26 +158,29 @@ while True:
         for j in range(i, i + train_len - 1):
             temp[j-i] = X[j]
         I[i] = temp
-    X_train, X_test, Y_train, Y_test = train_test_split(I, Y[25:100000], test_size = 0.2)
+    X_train, X_test, Y_train, Y_test = train_test_split(I, Y[25:100000], test_size = 0.50)
 
     predict = model.predict(X_test, verbose=1)
 
-    predictn2 = predict.flatten()
 
-    for i in range(len(predictn2)):
-        if not predictn2[i] < 0.4:
-            predictn2[i] = 1.0;
-        else:
-            predictn2[i] = 0.0;
 
-    print(predictn2)
+
+    predictn2 = predict.flatten().round()
+
+    # for i in range(len(predictn2)):
+    #     if not predictn2[i] < 0.4:
+    #         predictn2[i] = 1.0;
+    #     else:
+    #         predictn2[i] = 0.0;
+
+    # print(predictn2)
     predictn2 = predictn2.tolist()
-    print(predictn2)
+    # print(predictn2)
     predictn2 = [int(X) for X in predictn2]
     print(predictn2)
     trust2 = 100 * accuracy_score(list(Y_test),predictn2)
-    print(trust2)
-
+    # print(trust2)
+    trust2=str(trust2)
     with open('static/trust.txt','w') as f:
         f.write(trust2)
 
