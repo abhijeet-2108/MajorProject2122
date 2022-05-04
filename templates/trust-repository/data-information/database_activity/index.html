@@ -15,9 +15,9 @@
 {% endblock navbar %}
 <br>
 {% block content %}
-<h2 class="py-2 pr-3 container "><strong>Databse Activity</strong></h2>
-  <div class="container ">
-      <div class="row text text-dark my-5  ">
+<h2 class="py-2 pr-3 container "><strong>Database Activity</strong></h2>
+<div class="container ">
+  <!-- <div class="row text text-dark my-5  ">
         <div class="col-4">
           <h4>
             Registered users
@@ -36,8 +36,126 @@
         <h3>
           Trust Percentage = {{text}}%
         </h3> 
+      </div> -->
+
+
+
+
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-8 ps-5">
+      <div class="row mt-5 g-4">
+        <div class="col-6">
+          <label for="floatingSelectDB">Database</label>
+          <select id="floatingSelectDB" class="form-select">
+            <option selected>SQLite</option>
+            <option value="1">MYSQL</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label for="formFile">Upload File</label>
+          <input class="form-control" type="file" placeholder="HHH" id="formFile">
+        </div>
+        <div class="col-6">
+          <label for="floatingSelectModel">Machine Learning Model</label>
+          <select id="floatingSelectModel" class="form-select">
+            <option selected>LSTM</option>
+            <option value="1">BRNN</option>
+          </select>
+        </div>
       </div>
+
+      <div class="container mt-5 border border-secondary rounded-3" style="height: 50vh !important; overflow-y: scroll">
+        <output id="out">
+        </output>
+      </div>
+
+    </div>
+    <div class="col">
+      <div class="mt-5 p-3">
+        <div class="text-center display-6">
+          Users
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">IP</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for x in users %}
+            <tr>
+              <th scope="row">{{x['id']}}</th>
+              <td>{{x['username']}}</td>
+              <td>{{ip}}</td>
+              <td>Active</td>
+            </tr>
+            {% endfor %}
+
+            <!-- <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>179.231.101.122</td>
+                    <td>Online</td>
+                </tr> -->
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <div class="mt-5 p-3 card">
+        <h4 style="min-height: 200px;">Confusion Matrix:</h4>
+          <img src="../../static/image/confusion_matrix_BRNN_27_04_2022_10_16.png" class="card-img-top" style="display: none;" id="brnn">
+      </div>
+    </div>
   </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<script>
+
+  // if(document.getElementById("formfile").value !="" ){
+  //   document.getElementById("brnn").style.display = "none";
+  // }
+  // else{
+  //   document.getElementById("brnn").style.display = "block";
+  // }
+  function arrayToTable(tableData) {
+    var table = $('<table class="table text-center"></table>');
+    console.log(tableData)
+
+    $(tableData.split("\n")).each(function (i, rowData) {
+      console.log(i, rowData)
+
+      var row = $('<tr></tr>');
+      $(rowData.split(",")).each(function (j, cellData) {
+        if (i == 0)
+          row.append($('<th>' + cellData + '</th>'));
+        else
+          row.append($('<td >' + cellData + '</td>'));
+      });
+      table.append(row);
+    });
+    document.getElementById("brnn").style.display = "block";
+    return table;
+  }
+
+  var fileInput = document.getElementById("formFile"),
+
+    readFile = function () {
+      var reader = new FileReader();
+      reader.onload = function () {
+        $('#out').append(arrayToTable(reader.result));
+      };
+
+      reader.readAsBinaryString(fileInput.files[0]);
+    };
+
+  fileInput.addEventListener('change', readFile);
+</script>
 
 
 
@@ -46,12 +164,12 @@
 {{ super() }}
 <script>
 
-    document.getElementById("a-home").classList.remove('active')
+  document.getElementById("a-home").classList.remove('active')
 
-    document.getElementById("a-about").classList.remove('active')
-    document.getElementById("a-dashboard").classList.remove('active')
-    document.getElementById("a-repo").classList.add('active')
-    document.getElementById("a-data").classList.remove('active')
+  document.getElementById("a-about").classList.remove('active')
+  document.getElementById("a-dashboard").classList.remove('active')
+  document.getElementById("a-repo").classList.add('active')
+  document.getElementById("a-data").classList.remove('active')
 
 
 </script>

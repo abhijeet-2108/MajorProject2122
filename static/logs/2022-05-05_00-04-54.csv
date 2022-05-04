@@ -1,0 +1,2 @@
+date,time,cpu_load,idle_time_cpu,kernal_process_time_cpu,normal_process_time_usermode_cpu,freq_max,freq_min,disk_usage_total,disk_usage_used,disk_usage_free,disk_usage_in_percent,disk_reading_count,disk_writing_count,disk_reading_bytes,disk_writing_bytes,net_in,net_out,packet_in,packet_out
+05-05-2022,00:04:54,5.1,5307.93,138.13,790.95,0.0,2592.002,9736500,8884472,337724,96.3,43716,17754,1663167488,598832128,4212,25802,31,40
